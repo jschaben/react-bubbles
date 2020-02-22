@@ -11,6 +11,7 @@ const ColorList = ({ colors, updateColors }) => {
   console.log(colors);
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+  const [colorToAdd, setcolorToAdd] = useState(initialColor);
 
   const editColor = color => {
     setEditing(true);
@@ -47,10 +48,57 @@ const ColorList = ({ colors, updateColors }) => {
         console.log('could not delete' ,err)
       })
   };
+  const addColor = event => {
+    event.preventDefault();
+
+    console.log("Adding color", colorToAdd);
+
+    axiosWithAuth()
+      .post("http://localhost:5000/api/colors", colorToAdd)
+      .then(response => {
+        console.log("Color added:", response);
+
+        updateColors([...colors, colorToAdd]);
+      })
+      .catch(error => {
+        console.log("Couldn't add color:", error);
+      });
+  };
+
 
   return (
     <div className="colors-wrap">
       <p>colors</p>
+      
+      <div className="addColorDiv">
+        <form name="addColor">
+          <legend>add color</legend>
+          <label>
+            color name:
+            <input
+              onChange={e =>
+                setcolorToAdd({ ...colorToAdd, color: e.target.value })
+              }
+              value={colorToAdd.color}
+            />
+          </label>
+          <label>
+            hex code:
+            <input
+              onChange={e =>
+                setcolorToAdd({
+                  ...colorToAdd,
+                  code: { hex: e.target.value }
+                })
+              }
+              value={colorToAdd.code.hex}
+            />
+          </label>
+          <div className="button-row">
+            <button onClick={addColor}>add</button>
+          </div>
+        </form>
+      </div>
       <ul>
         {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
