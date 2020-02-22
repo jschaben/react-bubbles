@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {axiosWithAuth} from "../utils/axiosWithAuth";
+import {Form} from "reactstrap"
 
 const Login = (props) => {
   // make a post request to retrieve a token from the api
@@ -29,6 +30,7 @@ const Login = (props) => {
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
+      <Form>
       <form onSubmit={login}>
       <input
             type="text"
@@ -46,6 +48,7 @@ const Login = (props) => {
           />
           <button>Log in</button>
       </form>
+      </Form>
     </>
   );
 };

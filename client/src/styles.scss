@@ -8,22 +8,31 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-}
+  }
 
 .App {
   font-family: "Montserrat", sans-serif;
   text-align: center;
   display: flex;
+  justify-content: center;
+  align-items: center;
 
   svg {
     height: 100%;
   }
 }
-
+// h1 {
+//   align-items: center;
+//   text-align: center;
+//   margin: 20px;
+// }
 .spacer {
   height: 100%;
 }
-
+// Form {
+//   display: flex;
+//   align-items: center;
+// }
 .bubble-wrap {
   margin: 0 auto;
   display: flex;
@@ -61,9 +70,12 @@ body,
 }
 
 form {
-  margin-top: 60px;
+  margin-top: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
 
   legend {
     padding-left: 40px;
@@ -81,6 +93,8 @@ form {
 
   input {
     width: 100px;
+    margin: 6px;
+    padding: 8px;
   }
 }
 
